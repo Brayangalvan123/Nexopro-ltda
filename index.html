@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PrintTech | Venta y Alquiler de Impresoras</title>
+  <style>
+    :root {
+      --color-principal: #0078ff;
+      --color-fondo: #f0f0f0;
+      --color-texto: #333;
+      --color-boton: #0078ff;
+      --color-boton-hover: #005ecc;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Poppins", sans-serif;
+      background-color: var(--color-fondo);
+      color: var(--color-texto);
+      transition: background 0.4s, color 0.4s;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--color-principal);
+      color: white;
+      padding: 15px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5em;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      margin: 0 10px;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.7;
+    }
+
+    /* 🌙 Botón modo oscuro */
+    .tema-btn {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+    }
+
+    /* Menú hamburguesa */
+    .menu-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: white;
+      font-size: 1.8em;
+      cursor: pointer;
+    }
+
+    /* Menú móvil oculto por defecto */
+    .menu-movil {
+      display: none;
+      flex-direction: column;
+      background-color: var(--color-principal);
+      position: absolute;
+      top: 60px;
+      right: 0;
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+    }
+
+    .menu-movil a {
+      display: block;
+      margin: 10px 0;
+      color: white;
+      text-decoration: none;
+      font-size: 1.1em;
+    }
+
+    /* 🏠 INICIO */
+    .inicio {
+      text-align: center;
+      padding: 80px 20px;
+      animation: aparecer 1.2s ease-in-out;
+    }
+
+    .inicio h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .inicio p {
+      max-width: 600px;
+      margin: 10px auto 25px;
+      font-size: 1.1em;
+    }
+
+    .inicio button {
+      background-color: var(--color-boton);
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      font-size: 1.1em;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+
+    .inicio button:hover {
+      background-color: var(--color-boton-hover);
+      transform: scale(1.05);
+    }
+
+    /* 💼 SERVICIOS */
+    .servicios {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 20px;
+      padding: 40px;
+      text-align: center;
+    }
+
+    .servicio {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .servicio:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+    }
+
+    .servicio h3 {
+      color: var(--color-principal);
+    }
+
+    /* 📞 CONTACTO */
+    .contacto {
+      background: #e9f1ff;
+      text-align: center;
+      padding: 50px 20px;
+    }
+
+    .contacto p {
+      font-size: 1.1em;
+    }
+
+    footer {
+      background: #222;
+      color: #ccc;
+      text-align: center;
+      padding: 15px 10px;
+      font-size: 0.9em;
+    }
+
+    /* 🌙 MODO OSCURO */
+    .oscuro {
+      --color-fondo: #121212;
+      --color-texto: #f5f5f5;
+      --color-boton: #f5f5f5;
+      --color-boton-hover: #d3d3d3;
+    }
+
+    /* 📱 BOTÓN WHATSAPP */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      cursor: pointer;
+      transition: transform 0.3s ease;
+      text-decoration: none;
+      z-index: 1000;
+    }
+
+    .whatsapp-btn:hover {
+      transform: scale(1.1);
+    }
+
+    @keyframes aparecer {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      nav {
+        display: none;
+      }
+      .menu-toggle {
+        display: block;
+      }
+      .menu-movil.activo {
+        display: flex;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🖨️ PrintTech</h1>
+    <nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#contacto">Contacto</a>
+      <button class="tema-btn" onclick="cambiarTema()">🌓</button>
+    </nav>
+
+    <!-- Botón menú móvil -->
+    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+  </header>
+
+  <!-- Menú desplegable móvil -->
+  <div class="menu-movil" id="menuMovil">
+    <a href="#inicio" onclick="toggleMenu()">Inicio</a>
+    <a href="#servicios" onclick="toggleMenu()">Servicios</a>
+    <a href="#contacto" onclick="toggleMenu()">Contacto</a>
+    <button class="tema-btn" onclick="cambiarTema()">🌓</button>
+  </div>
+
+  <section class="inicio" id="inicio">
+    <h2>Soluciones en impresión para tu negocio</h2>
+    <p>Ofrecemos venta, alquiler y mantenimiento de impresoras de alta calidad.  
+    Ahorra tiempo, dinero y mejora la productividad de tu empresa.</p>
+    <button onclick="alert('Gracias por tu interés. Un asesor se comunicará pronto.')">Solicitar cotización</button>
+  </section>
+
+  <section class="servicios" id="servicios">
+    <div class="servicio">
+      <h3>🛒 Venta de impresoras</h3>
+      <p>Modelos de las mejores marcas con garantía y soporte técnico.</p>
+    </div>
+    <div class="servicio">
+      <h3>🔁 Alquiler de impresoras</h3>
+      <p>Planes flexibles para empresas con mantenimiento incluido.</p>
+    </div>
+    <div class="servicio">
+      <h3>🧰 Servicio técnico</h3>
+      <p>Reparaciones, mantenimiento preventivo y recarga de tóner.</p>
+    </div>
+  </section>
+
+  <section class="contacto" id="contacto">
+    <h2>Contáctanos</h2>
+    <p>📞 Teléfono: +57 300 000 0000</p>
+    <p>📧 Correo: info@printtech.com</p>
+    <p>📍 Dirección: Calle 10 #45-23, Bogotá, Colombia</p>
+  </section>
+
+  <footer>
+    © 2025 PrintTech - Venta y Alquiler de Impresoras | Todos los derechos reservados
+  </footer>
+
+  <!-- 📱 Botón flotante de WhatsApp -->
+  <a href="https://wa.me/573000000000?text=Hola%20PrintTech!%20Estoy%20interesado%20en%20sus%20servicios%20de%20impresoras." 
+     class="whatsapp-btn" target="_blank" title="Chatea con nosotros por WhatsApp">💬</a>
+
+  <script>
+    // 🌙 Cambio de tema
+    function cambiarTema() {
+      document.body.classList.toggle("oscuro");
+    }
+
+    // 📱 Menú móvil
+    function toggleMenu() {
+      const menu = document.getElementById("menuMovil");
+      menu.classList.toggle("activo");
+    }
+  </script>
+</body>
+</html>
